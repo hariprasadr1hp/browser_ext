@@ -1,0 +1,10 @@
+$beige: #ebedde;
+$blue-grey: #9ebfc2;
+$lemon-yellow: #f2ff26;
+$white: #ffffff;
+$black: #000000;
+$deep-slate-grey: #031c15;
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}

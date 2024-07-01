@@ -1,0 +1,63 @@
+{
+  "name": "hp",
+  "displayName": "HP Web Extension",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "hp's browser extension",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hariprasadr1hp/hp_ext"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "clean": "rm -rf dist/",
+    "clean-install": "rm -rf node_modules/ package-lock.json && pnpm i",
+    "lint": "eslint . --fix",
+    "lint:manifest": "web-ext lint --pretty",
+    "preview": "vite preview --port 5050",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@casl/ability": "^6.7.1",
+    "@mdi/font": "^7.4.47",
+    "@pola-rs/browser": "0.0.1-alpha",
+    "ag-grid-community": "^32.0.2",
+    "ag-grid-vue3": "^32.0.2",
+    "axios": "^1.7.2",
+    "jwt-decode": "^4.0.0",
+    "lightweight-charts": "^4.1.6",
+    "marked": "^13.0.1",
+    "nodejs-polars": "^0.13.0",
+    "pinia": "^2.1.7",
+    "plotly.js-dist-min": "^2.33.0",
+    "rollup-plugin-chrome-extension": "^3.6.12",
+    "sass": "^1.77.6",
+    "vue-router": "^4.4.0",
+    "vuetify": "^3.6.10"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config-vue": "^0.43.1",
+    "@types/chrome": "^0.0.268",
+    "@types/node": "^20.14.9",
+    "@types/webextension-polyfill": "^0.10.7",
+    "@types/webfontloader": "^1.6.38",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vitejs/plugin-vue-jsx": "^4.0.0",
+    "@vue/compiler-sfc": "^3.4.31",
+    "axios-mock-adapter": "^1.22.0",
+    "terser": "^5.31.1",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.2",
+    "vite-plugin-pages": "^0.32.3",
+    "vite-plugin-vue-devtools": "^7.3.5",
+    "vite-plugin-vue-layouts": "^0.11.0",
+    "vue-tsc": "^2.0.22",
+    "web-ext": "^8.2.0",
+    "webext-bridge": "^6.0.1"
+  },
+  "overrides": {
+    "@crxjs/vite-plugin": "$@crxjs/vite-plugin"
+  }
+}

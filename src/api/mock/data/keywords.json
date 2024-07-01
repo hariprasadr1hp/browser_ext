@@ -1,0 +1,37 @@
+[
+  {
+    "query": "griffindor",
+    "impressions": 2,
+    "clicks": 0,
+    "average_position": 23,
+    "CTR": 0
+  },
+  {
+    "query": "hogwarts",
+    "impressions": 1,
+    "clicks": 0,
+    "average_position": 1,
+    "CTR": 0
+  },
+  {
+    "query": "marauder",
+    "impressions": 8,
+    "clicks": 0,
+    "average_position": 3.75,
+    "CTR": 0
+  },
+  {
+    "query": "you know who?",
+    "impressions": 1,
+    "clicks": 0,
+    "average_position": 13,
+    "CTR": 0
+  },
+  {
+    "query": "dumbledore army",
+    "impressions": 1,
+    "clicks": 0,
+    "average_position": 9,
+    "CTR": 0
+  }
+]
