@@ -23,6 +23,11 @@ const router = createRouter({
       component: () => import('@/views/MetricsView.vue')
     },
     {
+      path: '/linkedin',
+      name: 'LinkedIn',
+      component: () => import('@/views/LinkedinView.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue')

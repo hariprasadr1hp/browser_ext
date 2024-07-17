@@ -1,6 +1,7 @@
 <template>
   <nav>
     <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/linkedin">LinkedIn</RouterLink>
     <RouterLink to="/metrics">Metrics</RouterLink>
     <RouterLink to="/about">About</RouterLink>
     <RouterLink to="/login">Login</RouterLink>
