@@ -28,6 +28,11 @@ const router = createRouter({
       component: () => import('@/views/LinkedinView.vue')
     },
     {
+      path: '/youtube',
+      name: 'YouTube',
+      component: () => import('@/views/YoutubeView.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue')

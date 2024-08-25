@@ -1,5 +1,5 @@
 import { defineManifest } from '@crxjs/vite-plugin'
-import packageJson from './package.json' assert { type: 'json' }
+import packageJson from './package.json' with { type: 'json' }
 
 const { version, name, description } = packageJson
 const [major, minor, patch, label = '0'] = version.replace(/[^\d.-]+/g, '').split(/[.-]/)
@@ -21,9 +21,14 @@ export default defineManifest(async (env) => ({
   content_scripts: [
     {
       // all_frames: false,
-      js: ['src/content-script/index.ts'],
+      js: ['src/content-scripts/index.ts'],
       matches: ['*://*/*'],
       // run_at: 'document_end',
+    },
+    {
+      js: ['src/content-scripts/youtube.ts'],
+      matches: ["*://www.youtube.com/watch*"],
+      run_at: "document_end"
     },
   ],
   options_ui: {
