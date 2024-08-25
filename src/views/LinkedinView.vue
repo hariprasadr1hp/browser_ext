@@ -10,6 +10,7 @@ interface linkedinJob {
 
 const pagePath = ref<string>('');
 const linkedinJobs = ref<linkedinJob[]>([]);
+const profileCard = ref<string[]>([]);
 
 const getPagePath = async (): Promise<string> => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -56,6 +57,28 @@ const getLinkedinJobs = async () => {
   }
 };
 
+const getProfileCard = async () => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tab.id) {
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: () => {
+        if (!["http:", "https:"].includes(document.location.protocol))
+          return ["only applicable for http/https urls"];
+        if (!document.location.href.match("https://www.linkedin.com/in/[^/]+"))
+          return ["only applicable for linkedin profiles"];
+
+        const results = Array.from(document.querySelectorAll("div.pv-profile-card__anchor")).map(x => x.id);
+        return results;
+      }
+    });
+    if (results && Array.isArray(results[0].result)) {
+      profileCard.value = results[0].result;
+    }
+  }
+};
+
+
 
 onMounted(() => {
   updatePagePath();
@@ -73,6 +96,13 @@ onMounted(() => {
     <br>
     <v-data-table v-if="linkedinJobs.length" :items="linkedinJobs"></v-data-table>
     <p v-else>No jobs found. Please click the button above to fetch jobs.</p>
+    <br>
+
+    <v-btn @click="getProfileCard">Profile</v-btn>
+    <br>
+    <!-- <v-data-table v-if="profileCard.length" :items="profileCard"></v-data-table> -->
+    <p v-if="profileCard.length"> {{ profileCard }}</p>
+    <p v-else>No profile-info found. Please click the button above to fetch profile.</p>
     <br>
   </div>
   <br>
