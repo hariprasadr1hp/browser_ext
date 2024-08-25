@@ -18,17 +18,18 @@ for development,
 pnpm dev
 ```
 
-Then load extension to the browser(chrome), `chrome://extensions`, directing to
-the path `dist/chrome`
-
 To build the extension, run
 
 ```bash
 pnpm build
 ```
 
-And then pack files under `dist/chrome` or `dist/firefox`, you can upload to
-the corresponding extension store
+Then load extension to the browser(chrome), `chrome://extensions` as an
+[unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked)
+directing to the path `dist/chrome`, generated after `pnpm build`
+
+And then pack files under `dist/chrome` or `dist/firefox`, you can upload to the
+corresponding extension store
 
 ### Project Structure
 
@@ -49,7 +50,7 @@ check [`USAGE.md`](./USAGE.md) for information on how to use the app
 
 ### References
 
-- [Chrome](https://developer.chrome.com/docs/extensions/reference/)
+- [Chrome API](https://developer.chrome.com/docs/extensions/reference/api)
 - [FireFox](https://addons.mozilla.org/en-US/developers/)
 - [Vite](https://vitejs.dev/)
 - [Vite Config](https://vitejs.dev/config/)

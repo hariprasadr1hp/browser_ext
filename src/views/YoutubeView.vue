@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 
-const pagePath = ref<string>('');
-const transcriptText = ref<string>('');
+const pagePath = ref<string>("");
+const transcriptText = ref<string>("");
 
 const getPagePath = async (): Promise<string> => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
