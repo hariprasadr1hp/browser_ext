@@ -46,6 +46,7 @@ export default defineManifest(async (env) => ({
     "browsingData",
     "clipboardRead",
     "clipboardWrite",
+    "contextMenus",
     "cookies",
     "downloads",
     "geolocation",
