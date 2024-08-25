@@ -35,7 +35,7 @@ const getTranscript = async () => {
         if (transcriptButton) {
           transcriptButton.click();
         } else {
-          return "Transcript NOT FOUND!.";
+          return "Transcript Button NOT FOUND!";
         }
 
         // Extract the transcript text
@@ -71,7 +71,7 @@ onMounted(() => {
     <v-btn @click="getTranscript">Show Transcript</v-btn>
     <br>
     <p v-if="transcriptText"> {{ transcriptText }}</p>
-    <p v-else>Transcript NOT FOUND!.</p>
+    <p v-else>Transcript NOT FOUND!</p>
     <br>
   </div>
   <br>

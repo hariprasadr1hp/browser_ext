@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import HelloWorld from '@/components/HelloWorld.vue';
 import Navigator from '@/components/Navigator.vue';
+// import HelloWorld from '@/components/HelloWorld.vue';
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <!-- <HelloWorld msg="You did it!" /> -->
       <Navigator />
     </div>
   </header>

@@ -18,9 +18,9 @@ const router = createRouter({
       redirect: '/'
     },
     {
-      path: '/metrics',
-      name: 'Metrics',
-      component: () => import('@/views/MetricsView.vue')
+      path: '/tracker',
+      name: 'Tracker',
+      component: () => import('@/views/TrackerView.vue')
     },
     {
       path: '/linkedin',
