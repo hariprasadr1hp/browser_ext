@@ -23,16 +23,16 @@ export default defineManifest(async (env) => ({
   },
   content_scripts: [
     {
-      // all_frames: false,
-      // js: ["src/content-scripts/index.ts"],
-      // matches: ['*://*/*'],
-      // run_at: 'document_end',
+      all_frames: false,
+      js: ["src/content-scripts/index.ts"],
+      matches: ['*://*/*'],
+      run_at: 'document_end',
     },
-    //   {
-    //     js: ["src/content-scripts/youtube.ts"],
-    //     matches: ["*://www.youtube.com/watch*"],
-    //     run_at: "document_end"
-    //   },
+    {
+      js: ["src/content-scripts/youtube.ts"],
+      matches: ["*://www.youtube.com/watch*"],
+      run_at: "document_end"
+    },
   ],
   options_ui: {
     page: "src/options/index.html",
