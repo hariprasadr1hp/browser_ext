@@ -8,13 +8,17 @@ interface linkedinJob {
   location: string;
 }
 
-const pagePath = ref<string>('');
+const pagePath = ref<string>("");
 const linkedinJobs = ref<linkedinJob[]>([]);
 const profileCard = ref<string[]>([]);
 
-const getPagePath = async (): Promise<string> => {
+async function getPagePath(): Promise<string> {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  return new URL(tab.url!).pathname || '';
+  if (tab.url) {
+    const url = new URL(tab.url);
+    return url.pathname;
+  }
+  return "";
 };
 
 const updatePagePath = async () => {
@@ -32,15 +36,15 @@ const getLinkedinJobs = async () => {
         if (!document.location.href.match("https://www.linkedin.com/jobs"))
           return ["only applicable for linkedin/jobs"];
 
-        const jobCards: NodeListOf<Element> = document.querySelectorAll('div.job-card-container');
+        const jobCards: NodeListOf<Element> = document.querySelectorAll("div.job-card-container");
         const jobs: linkedinJob[] = Array.from(jobCards).map((jobCard): linkedinJob => {
-          const id: string = jobCard.getAttribute('data-job-id') || '';
-          const titleElement = jobCard.querySelector('a.job-card-container__link.job-card-list__title.job-card-list__title--link');
-          const title: string = titleElement ? (titleElement as HTMLElement).innerText.trim() : '';
-          const companyElement = jobCard.querySelector('span.job-card-container__primary-description');
-          const company: string = companyElement ? (companyElement as HTMLElement).innerText.trim() : '';
-          const locationElement = jobCard.querySelector('li.job-card-container__metadata-item');
-          const location: string = locationElement ? (locationElement as HTMLElement).innerText.trim() : '';
+          const id: string = jobCard.getAttribute("data-job-id") || "";
+          const titleElement = jobCard.querySelector("a.job-card-container__link.job-card-list__title.job-card-list__title--link");
+          const title: string = titleElement ? (titleElement as HTMLElement).innerText.trim() : "";
+          const companyElement = jobCard.querySelector("span.job-card-container__primary-description");
+          const company: string = companyElement ? (companyElement as HTMLElement).innerText.trim() : "";
+          const locationElement = jobCard.querySelector("li.job-card-container__metadata-item");
+          const location: string = locationElement ? (locationElement as HTMLElement).innerText.trim() : "";
           return {
             id,
             title,
