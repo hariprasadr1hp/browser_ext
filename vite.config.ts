@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import Pages from 'vite-plugin-pages'
 import { crx } from "@crxjs/vite-plugin";
 import { defineViteConfig as define } from './define.config'
@@ -10,6 +11,7 @@ import manifest from "./manifest.config";
 export default defineConfig({
   plugins: [
     vue(),
+    svelte(),
     crx({ manifest }),
     Pages({
       dirs: [
@@ -34,7 +36,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) { },
+        manualChunks(_id) { },
       },
     },
     chunkSizeWarningLimit: 5000,

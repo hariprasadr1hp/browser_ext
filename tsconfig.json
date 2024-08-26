@@ -3,17 +3,29 @@
     "incremental": true,
     "target": "ES6",
     "jsx": "preserve",
-    "lib": ["ES6", "DOM"],
+    "lib": [
+      "ES6",
+      "DOM"
+    ],
     "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "@/*": ["./src/*"],
-      "~/*": ["./src/*"],
-      "src/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "~/*": [
+        "./src/*"
+      ],
+      "src/*": [
+        "./src/*"
+      ]
     },
     "resolveJsonModule": true,
-    "types": ["webextension-polyfill", "chrome"],
+    "types": [
+      "webextension-polyfill",
+      "chrome"
+    ],
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -27,7 +39,8 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "src/**/*.svelte",
   ],
   "references": [
     {
