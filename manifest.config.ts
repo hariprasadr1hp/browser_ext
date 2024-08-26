@@ -1,11 +1,14 @@
 import { defineManifest } from "@crxjs/vite-plugin"
 import packageJson from './package.json' with { type: "json" }
 
-const { version, name, description } = packageJson
-const [major, minor, patch, label = '0'] = version.replace(/[^\d.-]+/g, '').split(/[.-]/)
+const { version, description } = packageJson
+const [major, minor, patch, label = "0"] = version.replace(/[^\d.-]+/g, "").split(/[.-]/)
 
 export default defineManifest(async (env) => ({
-  name: name,
+  name:
+    env.mode === "staging"
+      ? "[INTERNAL] HP Extension"
+      : "CRXJS HP Extension",
   description: description,
   version: `${major}.${minor}.${patch}.${label}`,
   version_name: version,
@@ -58,6 +61,8 @@ export default defineManifest(async (env) => ({
     "scripting",
     "storage",
     "tabs",
+    "tts",
+    "ttsEngine",
     "webNavigation",
   ],
   icons: {
