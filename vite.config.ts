@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { svelte } from '@sveltejs/vite-plugin-svelte';
+import react from '@vitejs/plugin-react';
 import Pages from 'vite-plugin-pages'
 import { crx } from "@crxjs/vite-plugin";
 import { defineViteConfig as define } from './define.config'
@@ -12,6 +13,7 @@ export default defineConfig({
   plugins: [
     vue(),
     svelte(),
+    react(),
     crx({ manifest }),
     Pages({
       dirs: [
