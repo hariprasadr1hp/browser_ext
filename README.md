@@ -21,7 +21,10 @@ pnpm dev
 To build the extension, run
 
 ```bash
-pnpm build
+pnpm build # to build directory for the set browser `TARGET_BROWSER` (chrome, firefox)
+pnpm build:chrome # to build chrome directory (`dist/chrome`)
+pnpm build:firefox # to build firefox directory (`dist/firefox`)
+pnpm build:all # to build both chrome and firefox
 ```
 
 Then load extension to the browser(chrome), `chrome://extensions` as an

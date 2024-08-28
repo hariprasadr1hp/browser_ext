@@ -8,6 +8,9 @@ import { crx } from "@crxjs/vite-plugin";
 import { defineViteConfig as define } from './define.config'
 import manifest from "./manifest.config";
 
+const targetBrowser = process.env.TARGET_BROWSER || 'chrome';
+const outputDir = `dist/${targetBrowser}`;
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -43,7 +46,7 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 5000,
     minify: "terser",
-    outDir: 'dist/chrome',
+    outDir: outputDir,
   },
   define,
 });

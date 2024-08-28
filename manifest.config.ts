@@ -4,23 +4,26 @@ import packageJson from './package.json' with { type: "json" }
 const { version, description } = packageJson
 const [major, minor, patch, label = "0"] = version.replace(/[^\d.-]+/g, "").split(/[.-]/)
 
+const isFirefox = process.env.TARGET_BROWSER === 'firefox';
+
 export default defineManifest(async (env) => ({
   name:
     env.mode === "staging"
       ? "[INTERNAL] HP Extension"
-      : "CRXJS HP Extension",
+      : "[PROD] HP Extension",
   description: description,
   version: `${major}.${minor}.${patch}.${label}`,
   version_name: version,
   manifest_version: 3,
-  // key: '',
   action: {
     default_title: "hp_popup",
     default_popup: "src/popup/index.html",
   },
-  background: {
-    service_worker: "src/background/index.ts",
-  },
+  background: (
+    isFirefox
+      ? { scripts: ['src/background/index.ts'] }
+      : { service_worker: "src/background/index.ts" }
+  ),
   content_scripts: [
     {
       all_frames: false,

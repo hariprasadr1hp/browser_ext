@@ -12,6 +12,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:chrome": "cross-env TARGET_BROWSER=chrome vite build",
+    "build:firefox": "cross-env TARGET_BROWSER=firefox vite build",
+    "build:all": "pnpm run build:chrome && pnpm run build:firefox",
     "clean": "rm -rf dist/",
     "clean-install": "rm -rf node_modules/ package-lock.json && pnpm i",
     "lint": "eslint . --ext .ts --fix",
@@ -55,6 +58,7 @@
     "@vitejs/plugin-vue-jsx": "^4.0.1",
     "@vue/compiler-sfc": "^3.4.38",
     "axios-mock-adapter": "^1.22.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "terser": "^5.31.6",
     "typescript": "^5.5.4",
