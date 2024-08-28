@@ -9,7 +9,7 @@ const isFirefox = process.env.TARGET_BROWSER === 'firefox';
 export default defineManifest(async (env) => ({
   name:
     env.mode === "staging"
-      ? "[INTERNAL] HP Extension"
+      ? "[STAGING] HP Extension"
       : "[PROD] HP Extension",
   description: description,
   version: `${major}.${minor}.${patch}.${label}`,
@@ -21,7 +21,7 @@ export default defineManifest(async (env) => ({
   },
   background: (
     isFirefox
-      ? { scripts: ['src/background/index.ts'] }
+      ? { scripts: ["src/background/index.ts"] }
       : { service_worker: "src/background/index.ts" }
   ),
   content_scripts: [
@@ -42,6 +42,7 @@ export default defineManifest(async (env) => ({
     open_in_tab: true,
   },
   options_page: "src/options/index.html",
+  devtools_page: "src/devtools/index.html",
   offline_enabled: false,
   host_permissions: [],
   permissions: [
