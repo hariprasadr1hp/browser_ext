@@ -29,10 +29,11 @@ pnpm build:all # to build both chrome and firefox
 
 Then load extension to the browser(chrome), `chrome://extensions` as an
 [unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked)
-directing to the path `dist/chrome`, generated after `pnpm build`
+directing to the path `dist/chrome`, generated after `pnpm build:chrome`
 
-And then pack files under `dist/chrome` or `dist/firefox`, you can upload to the
-corresponding extension store
+Similarly, load the temporary add-on at
+[about:debugging](about:debugging#/runtime/this-firefox), directing to the path
+`dist/firefox`, generated after `pnpm build:firefox`
 
 ### Project Structure
 
