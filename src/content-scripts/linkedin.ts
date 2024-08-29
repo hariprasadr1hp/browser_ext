@@ -16,19 +16,9 @@ function getLinkedinJobsList(): LinkedinJob[] {
   return jobs;
 }
 
-function getProfileCard(): string[] {
-  const results = Array.from(document.querySelectorAll("div.pv-profile-card__anchor")).map(x => x.id);
-  return results;
-}
-
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message.id === MessageID.LINKEDIN_JOBS) {
     sendResponse(getLinkedinJobsList());
   }
 })
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-  if (message.id === MessageID.LINKEDIN_PROFILE) {
-    sendResponse(getProfileCard());
-  }
-})

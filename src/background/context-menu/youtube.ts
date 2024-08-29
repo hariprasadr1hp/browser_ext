@@ -2,7 +2,7 @@ import { MessageID } from "@/models/message-types";
 
 
 const getYTOrgLinkMenuItem: chrome.contextMenus.CreateProperties = {
-  id: MessageID.YOUTUBE_ORG_LINK,
+  id: MessageID.YT_ORG_LINK,
   title: "Get yt org link",
   contexts: ["all"],
   documentUrlPatterns: ["*://www.youtube.com/watch*"],
