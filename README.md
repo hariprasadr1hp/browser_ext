@@ -2,8 +2,8 @@
 
 ### Overview
 
-A browser extension to facilitate day-to-day tasks. Works only on chrome for
-now, but sooner will be extended to other browsers (_starting with firefox_)
+A browser extension to facilitate day-to-day tasks. Works on both chrome-based
+and firefox browsers
 
 ### Usage
 
@@ -47,10 +47,6 @@ Similarly, load the temporary add-on at
   - `components`
   - `assets` - assets used in Vue components
 - `dist/chrome` - built files
-
-### Usage
-
-check [`USAGE.md`](./USAGE.md) for information on how to use the app
 
 ### References
 

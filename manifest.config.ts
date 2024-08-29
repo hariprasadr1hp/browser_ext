@@ -36,6 +36,11 @@ export default defineManifest(async (env) => ({
       matches: ["*://www.youtube.com/watch*"],
       run_at: "document_end"
     },
+    {
+      js: ["src/content-scripts/linkedin.ts"],
+      matches: ["*://www.linkedin.com/*"],
+      run_at: "document_end"
+    },
   ],
   options_ui: {
     page: "src/options/index.html",

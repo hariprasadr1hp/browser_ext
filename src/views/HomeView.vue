@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import 'ag-grid-community/styles/ag-grid.min.css';
 import 'ag-grid-community/styles/ag-theme-alpine.min.css';
+import HelloWorld from '@/components/HelloWorld.vue';
 
 const pagePath = ref();
 const saleIntentDomains = ref([]);
@@ -78,12 +79,13 @@ updatePagePath();
 </script>
 
 <template>
+  <HelloWorld />
   <div id="home">
     <h3 color="green">{{ pagePath }}</h3>
     <br>
     <hr><br>
 
-    <v-btn @click="getDomains">Domains with `sale-intent`</v-btn>
+    <v-btn @click="getDomains">Domains</v-btn>
     <ul>
       <li v-for="domain in saleIntentDomains" :key="domain" v-html="domain"></li>
     </ul>

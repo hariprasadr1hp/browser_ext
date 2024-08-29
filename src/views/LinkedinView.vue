@@ -1,88 +1,39 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-
-interface linkedinJob {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-}
+import { MessageID, BaseMessage } from '@/models/message-types';
+import { LinkedinJob } from '@/models/message-interfaces';
 
 const pagePath = ref<string>("");
-const linkedinJobs = ref<linkedinJob[]>([]);
+const linkedinJobs = ref<LinkedinJob[]>([]);
 const profileCard = ref<string[]>([]);
 
-async function getPagePath(): Promise<string> {
+async function getPagePath(): Promise<string | undefined> {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (tab.url) {
     const url = new URL(tab.url);
     return url.pathname;
   }
-  return "";
 };
 
 const updatePagePath = async () => {
-  pagePath.value = await getPagePath();
+  pagePath.value = await getPagePath() || "";
 };
 
 const getLinkedinJobs = async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (tab.id) {
-    const results = await chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      func: () => {
-        if (!["http:", "https:"].includes(document.location.protocol))
-          return ["only applicable for http/https urls"];
-        if (!document.location.href.match("https://www.linkedin.com/jobs"))
-          return ["only applicable for linkedin/jobs"];
-
-        const jobCards: NodeListOf<Element> = document.querySelectorAll("div.job-card-container");
-        const jobs: linkedinJob[] = Array.from(jobCards).map((jobCard): linkedinJob => {
-          const id: string = jobCard.getAttribute("data-job-id") || "";
-          const titleElement = jobCard.querySelector("a.job-card-container__link.job-card-list__title.job-card-list__title--link");
-          const title: string = titleElement ? (titleElement as HTMLElement).innerText.trim() : "";
-          const companyElement = jobCard.querySelector("span.job-card-container__primary-description");
-          const company: string = companyElement ? (companyElement as HTMLElement).innerText.trim() : "";
-          const locationElement = jobCard.querySelector("li.job-card-container__metadata-item");
-          const location: string = locationElement ? (locationElement as HTMLElement).innerText.trim() : "";
-          return {
-            id,
-            title,
-            company,
-            location,
-          };
-        });
-        return jobs;
-      }
-    });
-    if (results && Array.isArray(results[0].result)) {
-      linkedinJobs.value = results[0].result.filter((result): result is linkedinJob => typeof result !== 'string');
-    }
+    const response = await chrome.tabs.sendMessage(tab.id, { id: MessageID.LINKEDIN_JOBS });
+    linkedinJobs.value = response;
   }
 };
 
 const getProfileCard = async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (tab.id) {
-    const results = await chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      func: () => {
-        if (!["http:", "https:"].includes(document.location.protocol))
-          return ["only applicable for http/https urls"];
-        if (!document.location.href.match("https://www.linkedin.com/in/[^/]+"))
-          return ["only applicable for linkedin profiles"];
-
-        const results = Array.from(document.querySelectorAll("div.pv-profile-card__anchor")).map(x => x.id);
-        return results;
-      }
-    });
-    if (results && Array.isArray(results[0].result)) {
-      profileCard.value = results[0].result;
-    }
+    const response = await chrome.tabs.sendMessage(tab.id, { id: MessageID.LINKEDIN_PROFILE });
+    profileCard.value = response;
   }
 };
-
-
 
 onMounted(() => {
   updatePagePath();
