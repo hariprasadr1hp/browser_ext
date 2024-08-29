@@ -13,7 +13,6 @@ export default defineManifest(async (env) => ({
       : "[PROD] HP Extension",
   description: description,
   version: `${major}.${minor}.${patch}.${label}`,
-  version_name: version,
   manifest_version: 3,
   action: {
     default_title: "hp_popup",
@@ -48,7 +47,6 @@ export default defineManifest(async (env) => ({
   },
   options_page: "src/options/index.html",
   devtools_page: "src/devtools/index.html",
-  offline_enabled: false,
   host_permissions: [],
   permissions: [
     "activeTab",
@@ -65,13 +63,10 @@ export default defineManifest(async (env) => ({
     "history",
     "identity",
     "notifications",
-    "power",
     "privacy",
     "scripting",
     "storage",
     "tabs",
-    "tts",
-    "ttsEngine",
     "webNavigation",
   ],
   icons: {
