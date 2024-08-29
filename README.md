@@ -1,5 +1,3 @@
-## HP Browser Extension
-
 ### Overview
 
 A browser extension to facilitate day-to-day tasks. Works on both chrome-based
@@ -38,14 +36,13 @@ Similarly, load the temporary add-on at
 ### Project Structure
 
 - `src` - main source.
-  - `content-script` - scripts and components to be injected as `content_script`
-  - `background` - scripts for background
+  - `content-scripts` - scripts and components to be injected as
+    content_scripts"
+  - `background` - scripts to run as service worker
   - `popup` - popup vue application
   - `options`
   - `views` - application pages, common to all views (Help, Authentication
     etc.,)
-  - `components`
-  - `assets` - assets used in Vue components
 - `dist/chrome` - built files
 
 ### References
