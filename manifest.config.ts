@@ -74,4 +74,12 @@ export default defineManifest(async (env) => ({
   icons: {
     100: "src/assets/images/png/campaign_100x100.png",
   },
+  commands: {
+    "open_popup": {
+      suggested_key: {
+        default: "Ctrl+Shift+Z",
+      },
+      description: "Send a 'toggle-feature' event",
+    },
+  }
 }))
