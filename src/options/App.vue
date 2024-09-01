@@ -1,9 +1,8 @@
 <script setup lang="ts">
 
 function getDetails(): void {
-  console.log("you clicked!")
+  console.log(`you clicked at ${new Date().toISOString()}`)
 }
-
 
 </script>
 

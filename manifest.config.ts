@@ -20,8 +20,15 @@ export default defineManifest(async (env) => ({
   },
   background: (
     isFirefox
-      ? { scripts: ["src/background/index.ts"] }
-      : { service_worker: "src/background/index.ts" }
+      ? {
+        scripts: ["src/background/index.ts"],
+        type: "module",
+      }
+      : {
+        service_worker: "src/background/index.ts",
+        scripts: ["src/background/index.ts"],
+        type: "module",
+      }
   ),
   content_scripts: [
     {
@@ -50,7 +57,6 @@ export default defineManifest(async (env) => ({
   host_permissions: [],
   permissions: [
     "activeTab",
-    "alarms",
     "background",
     "bookmarks",
     "browsingData",
@@ -58,12 +64,8 @@ export default defineManifest(async (env) => ({
     "clipboardWrite",
     "contextMenus",
     "cookies",
-    "downloads",
     "geolocation",
-    "history",
-    "identity",
     "notifications",
-    "privacy",
     "scripting",
     "storage",
     "tabs",
