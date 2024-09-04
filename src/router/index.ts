@@ -17,28 +17,23 @@ const routes = [
   },
   {
     path: '/tracker',
-    name: 'Tracker',
+    name: 'tracker',
     component: () => import('@/views/TrackerView.vue')
   },
   {
     path: '/linkedin',
-    name: 'LinkedIn',
+    name: 'linkedin',
     component: () => import('@/views/LinkedinView.vue')
   },
   {
     path: '/youtube',
-    name: 'YouTube',
+    name: 'youtube',
     component: () => import('@/views/YoutubeView.vue')
   },
   {
     path: '/about',
     name: 'about',
     component: () => import('@/views/AboutView.vue')
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/views/LoginView.vue')
   },
 ]
 
