@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { AgGridVue } from 'ag-grid-vue3';
 import 'ag-grid-community/styles/ag-grid.min.css';

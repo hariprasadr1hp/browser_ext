@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import 'ag-grid-community/styles/ag-grid.min.css';
 import 'ag-grid-community/styles/ag-theme-alpine.min.css';
