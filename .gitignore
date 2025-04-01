@@ -17,6 +17,8 @@ coverage
 /cypress/videos/
 /cypress/screenshots/
 
+tsconfig.tsbuildinfo
+
 # Editor directories and files
 .vscode
 .vscode/*
@@ -27,3 +29,6 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+#
+tests/data/

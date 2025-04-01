@@ -48,6 +48,7 @@ export default defineManifest(async (env) => ({
       run_at: "document_end"
     },
   ],
+  incognito: "spanning",
   options_ui: {
     page: "src/options/index.html",
     open_in_tab: true,
