@@ -1,16 +1,16 @@
-import { defineManifest } from "@crxjs/vite-plugin"
-import packageJson from './package.json' with { type: "json" }
+import { defineManifest } from "@crxjs/vite-plugin";
+import packageJson from "./package.json" with { type: "json" };
 
-const { version, description } = packageJson
-const [major, minor, patch, label = "0"] = version.replace(/[^\d.-]+/g, "").split(/[.-]/)
+const { version, description } = packageJson;
+const [major, minor, patch, label = "0"] = version
+  .replace(/[^\d.-]+/g, "")
+  .split(/[.-]/);
 
-const isFirefox = process.env.TARGET_BROWSER === 'firefox';
+const isFirefox = process.env.TARGET_BROWSER === "firefox";
 
 export default defineManifest(async (env) => ({
   name:
-    env.mode === "staging"
-      ? "[STAGING] HP Extension"
-      : "[PROD] HP Extension",
+    env.mode === "staging" ? "[STAGING] HP Extension" : "[PROD] HP Extension",
   description: description,
   version: `${major}.${minor}.${patch}.${label}`,
   manifest_version: 3,
@@ -18,34 +18,37 @@ export default defineManifest(async (env) => ({
     default_title: "hp_popup",
     default_popup: "src/popup/index.html",
   },
-  background: (
-    isFirefox
-      ? {
+  browser_specific_settings: {
+    gecko: {
+      id: "hp-dev@example.local",
+    },
+  },
+  background: isFirefox
+    ? {
         scripts: ["src/background/index.ts"],
         type: "module",
       }
-      : {
+    : {
         service_worker: "src/background/index.ts",
         scripts: ["src/background/index.ts"],
         type: "module",
-      }
-  ),
+      },
   content_scripts: [
     {
       all_frames: false,
       js: ["src/content-scripts/index.ts"],
-      matches: ['*://*/*'],
-      run_at: 'document_end',
+      matches: ["*://*/*"],
+      run_at: "document_end",
     },
     {
       js: ["src/content-scripts/youtube.ts"],
       matches: ["*://www.youtube.com/watch*"],
-      run_at: "document_end"
+      run_at: "document_end",
     },
     {
       js: ["src/content-scripts/linkedin.ts"],
       matches: ["*://www.linkedin.com/*"],
-      run_at: "document_end"
+      run_at: "document_end",
     },
   ],
   incognito: "spanning",
@@ -66,6 +69,7 @@ export default defineManifest(async (env) => ({
     "contextMenus",
     "cookies",
     "geolocation",
+    "nativeMessaging",
     "notifications",
     "scripting",
     "storage",
@@ -76,11 +80,11 @@ export default defineManifest(async (env) => ({
     100: "src/assets/images/png/campaign_100x100.png",
   },
   commands: {
-    "open_popup": {
+    open_popup: {
       suggested_key: {
         default: "Ctrl+Shift+Z",
       },
       description: "Send a 'toggle-feature' event",
     },
-  }
-}))
+  },
+}));
